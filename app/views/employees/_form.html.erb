@@ -1,0 +1,68 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+        <% employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :city_id %>
+    <%= form.collection_select :city_id, @allcity, :id, :name,{ :prompt => 'Select City' },{ class: "form-control add_city", required: "true",:onchange => "myFunction()"}%>
+   </div>
+
+
+  <div class="employee_in_city">
+  </div>
+
+
+  <div class="field">
+    <%= form.label :manager_id %>
+    <%= form.text_field :manager_id %>
+  </div>
+
+
+
+  <div class="field">
+    <%= form.label :willing %>
+    <%= form.check_box :willing %>
+  </div>
+
+
+<div>
+  <%= form.label :image, "Attach an Image" %><br />
+  <%= form.file_field :image %>
+</div>
+
+  
+<div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<script type = 'text/javascript'>
+  function myFunction() {
+  var cityid = document.getElementById("employee_city_id").value;
+ // alert(cityid);
+          $.ajax({
+              beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+              type:'post',
+              async: true,
+              url: '/employee_city',
+              data: {city_id: cityid}
+            });
+} 
+</script>

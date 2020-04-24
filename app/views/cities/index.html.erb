@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Total number of cities: <%= City.count%> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Serial no.   </th>
+      <th>Name</th>
+      <th>Number of employees</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  
+  <% @sr_no = 0 %>
+    <% @cities.each_with_index do |city, i| %>
+      <tr>
+      
+        <td><%= i + 1 %></td>
+        <td><%= link_to city.name, city %></td>
+       <td><%= @city_count[city.id].to_i %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%= link_to 'New City', new_city_path %>

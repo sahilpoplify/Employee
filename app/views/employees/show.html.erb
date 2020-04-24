@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+  <h2><%= Employee %> </h2>
+
+
+ <%= image_tag(@manager.image_url(:profile_page), alt: "Image") if @manager.image? %><br/><br/>
+
+  <p>
+  <strong>ID:</strong>
+  <%= @manager.id %>
+
+  <br/>
+  <strong>Name:</strong>
+  <%= @manager.name  %>
+
+  <br/>
+  <strong>Number of subordinates:</strong>
+  <%= @employee_sub_count[@manager.id] %>
+  </p>
+
+
+                <table>
+                  <thead>
+                    <tr>
+                    
+                    <th>Serial no   </th>
+                      <th>Name</th>
+                      <th>City name</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @sr_no = 0 %>
+                  
+                    <% @subor.each do |sub| %>
+                      <tr>
+                        <td><%= @sr_no = @sr_no + 1 %></td>
+                        <td><%= sub.name %></td>
+                        <td><%= sub.city.name %></td>
+                      </tr>
+
+                    <% end %>
+                  </tbody>
+                </table>
+
+
+<%= link_to 'Edit', edit_employee_path(@manager) %>
+<br/>
+
+
+
+
+
+
+
+
+<%= link_to 'All Employees', employees_path %>
+<%= link_to 'All Managers', manager_path %>

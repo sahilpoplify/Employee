@@ -1,0 +1,29 @@
+<h1><%= "Relocation requests" %> </h1>
+
+<p>
+  <strong>Total requests: </strong>
+  <%= @total_requests %>
+</p>
+
+
+        <table>
+                  <thead>
+                    <tr>
+                    
+                    <th>Serial no   </th>
+                      <th>Name</th>
+                      <th>City name</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @requested_employee.each_with_index do |sub, i| %>
+                      <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= link_to sub.name, edit_employee_path(sub) %></td>
+                        <td><%= sub.city.name %></td>
+                     </tr>
+                        <% end %>
+                  </tbody>
+        </table>

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  <strong>Name:</strong>
+  <%= @city.name %>
+  </h1>
+
+<p>
+<br/>
+   <strong>Number of employees: </strong>
+  <%= @city_employees_count %>
+<br/>
+ <strong>Name:</strong>
+  <%= @city.name %>
+</p>
+
+
+    <table>
+                  <thead>
+                    <tr>
+                    
+                    <th>Serial no   </th>
+                      <th>Name</th>
+                      <th>Manager's name</th>
+                      <th>Manager's City</th>
+                      <th colspan="3"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @sr_no = 0 %>
+                  
+                    <% @city_employees.each do |employee| %>
+                      <tr>
+                        <td><%= @sr_no = @sr_no + 1 %></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.manager.name %></td>
+                        <td><%= employee.manager.city.name %></td>
+                     
+                      </tr>
+
+                    <% end %>
+                  </tbody>
+                </table>
+
+
+
+
+
+<%= link_to 'All cities', cities_path %>
